@@ -6,48 +6,53 @@
   <title>Emotion Recognition Chatbot</title>
   <style>
     body {
-      font-family: Arial, sans-serif;
-      background-color: #f3f3f3;
-      color: #333;
+      font-family: 'Poppins', sans-serif;
+      background-color: #e9ecef;
+      color: #495057;
       margin: 0;
       padding: 0;
     }
     .container {
       width: 100%;
-      max-width: 600px;
+      max-width: 700px;
       margin: auto;
-      padding: 50px;
-      background-color: white;
-      border-radius: 5px;
-      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+      padding: 40px;
+      background-color: #ffffff;
+      border-radius: 10px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     }
     h1 {
       text-align: center;
-      margin-bottom: 40px;
+      color: #007bff;
+      margin-bottom: 30px;
+      font-weight: 700;
     }
     .chatbot-header {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      margin-bottom: 30px;
+      margin-bottom: 20px;
     }
     .chatbot-header img {
       width: 60px;
       height: 60px;
       border-radius: 50%;
       object-fit: cover;
+      border: 2px solid #007bff;
     }
     .chatbot-header h2 {
       margin: 0;
-      font-size: 24px;
+      font-size: 28px;
+      color: #495057;
     }
     .chat-area {
       max-height: 400px;
-      overflow-y: scroll;
-      border: 1px solid #ccc;
+      overflow-y: auto;
+      border: 1px solid #dee2e6;
       border-radius: 5px;
-      padding: 10px;
+      padding: 15px;
       margin-bottom: 20px;
+      background-color: #f8f9fa;
     }
     .input-container {
       display: flex;
@@ -56,21 +61,25 @@
     }
     input[type="text"] {
       flex-grow: 1;
-      padding: 10px;
-      border: 1px solid #ccc;
-      border-radius: 20px;
+      padding: 12px;
+      border: 1px solid #ced4da;
+      border-radius: 30px;
       margin-right: 10px;
       font-size: 16px;
     }
-    button, #imageUploadButton {
-      padding: 10px 20px;
-      background-color: #4caf50;
+    button {
+      padding: 12px 24px;
+      background-color: #007bff;
       color: white;
       border: none;
-      border-radius: 20px;
+      border-radius: 30px;
       cursor: pointer;
       font-size: 16px;
       margin-left: 10px;
+      transition: background-color 0.3s;
+    }
+    button:hover {
+      background-color: #0056b3;
     }
     .messages {
       display: flex;
@@ -78,20 +87,20 @@
       gap: 10px;
     }
     .message {
-      padding: 10px;
-      border-radius: 10px;
+      padding: 12px;
+      border-radius: 15px;
       max-width: 70%;
       display: flex;
       flex-direction: column;
       gap: 5px;
     }
     .user-message {
-      background-color: #4caf50;
+      background-color: #007bff;
       color: white;
       align-self: flex-end;
     }
     .bot-message {
-      background-color: #f1f1f1;
+      background-color: #e2e3e5;
       align-self: flex-start;
     }
     .message img {
@@ -111,22 +120,22 @@
       font-size: 18px;
     }
     .emotion.happy {
-      color: #4caf50;
+      color: #28a745;
     }
     .emotion.sad {
-      color: #f44336;
+      color: #dc3545;
     }
     .emotion.neutral {
-      color: #212121;
+      color: #6c757d;
     }
   </style>
 </head>
 <body>
   <div class="container">
-    <h1>Emotion Recognition Chatbot</h1>
+    <h1>Super Bot 360</h1>
     <div class="chatbot-header">
-      <img src="https://via.placeholder.com/60" alt="Chatbot Icon">
-      <h2>EmoBot</h2>
+      <img src="https://via.placeholder.com/60?text=🤖" alt="Chatbot Icon">
+      <h2>VERY COOL BOT</h2>
     </div>
     <div class="chat-area" id="chatArea">
       <!-- Chat messages will be dynamically added here -->
@@ -147,35 +156,24 @@
         displayMessage(message, "user");
         input.value = "";
 
-        sendMessageToServer(message);
+        // Send user message to backend via POST request
+        fetch('/chat', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ message: message }),
+        })
+        .then(response => response.json())
+        .then(data => {
+          const botResponse = data.response;
+          displayMessage(botResponse, "bot");
+        })
+        .catch(error => console.error('Error:', error));
 
         scrollToBottom();
       }
     });
-
-    async function sendMessageToServer(message) {
-      try {
-        const response = await fetch('/api/analyze', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({ message })
-        });
-
-        const data = await response.json();
-        const emotion = data.emotion;
-        displayEmotion(emotion);
-
-        // Simulate a response from the chatbot
-        setTimeout(function() {
-          displayMessage("I'm just a prototype and can't do much yet.", "bot");
-          scrollToBottom();
-        }, 1000);
-      } catch (error) {
-        console.error('Error:', error);
-      }
-    }
 
     function displayMessage(text, type) {
       const messageElement = document.createElement("div");
@@ -186,12 +184,6 @@
       messageElement.appendChild(textElement);
 
       document.getElementById("chatArea").appendChild(messageElement);
-    }
-
-    function displayEmotion(emotion) {
-      const emotionElement = document.getElementById("emotion");
-      emotionElement.textContent = `Detected emotion: ${emotion}`;
-      emotionElement.className = `emotion ${emotion}`;
     }
 
     function scrollToBottom() {
