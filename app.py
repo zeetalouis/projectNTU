@@ -6,39 +6,68 @@ app = Flask(__name__)
 
 # Emotion and Swear Words Lexicons
 emotion_words = {
-    "happy": ["delicious", "great", "wonderful", "recommend", "nice", "good", "tasty", "flavorful", "excellent", "satisfying", 
-              "mouthwatering", "superb", "amazing", "divine", "scrumptious", "tantalizing", "delectable", "delightful", "savory",
-              "yummy", "succulent", "outstanding", "fabulous", "fantastic", "terrific", "phenomenal", "perfect", "top-notch", 
-              "first-rate", "exceptional", "brilliant", "stellar", "impeccable", "wonderful", "exceptional", "five-star", "glorious",
-              "splendid", "superior", "memorable", "joyful", "ecstatic", "elated", "cheerful", "thrilled", "content", "radiant", 
-              "exuberant", "jubilant", "blissful", "euphoric", "overjoyed"],
-
-    "sad": ["bland", "slow", "disappointing", "unclean", "not seasoned", "soggy", "bitter", "stale", "overpriced", "undercooked",
-            "mediocre", "subpar", "forgettable", "lackluster", "below-average", "underwhelming", "boring", "dreary", "dismal", 
-            "lousy", "upsetting", "unpleasant", "unsatisfactory", "dreadful", "poor", "miserable", "heartbreaking", "depressing", 
-            "disheartening", "gloomy", "melancholy", "woeful", "tragic", "dispiriting", "regrettable", "unfulfilling", "uninspiring"],
-
-    "mad": ["rude", "unprofessional", "poor", "bad", "unsanitary", "chaotic", "unorganized", "horrible", "awful", "terrible", 
-            "outrageous", "infuriating", "frustrating", "enraging", "irritating", "exasperating", "annoying", "disruptive", 
-            "offensive", "aggravating", "agitated", "incensed", "livid", "furious", "irate", "angry", "hostile", "fuming", 
-            "indignant", "irate", "vehement", "rabid", "pissed off", "vexed", "maddening", "infuriated", "outraged", "incensed"],
-
-    "disgusted": ["disgusting", "inedible", "unappetizing", "grimy", "gross", "unsanitary", "unhygienic", "appalling", "shoddy",
-                  "cheaply-made", "horrendous", "revolting", "repulsive", "nauseating", "vile", "foul", "repugnant", "abhorrent",
-                  "disdainful", "offensive", "repellent", "detestable", "noxious", "grotesque", "displeasing", "unpalatable", 
-                  "off-putting", "distasteful", "horrible", "off-putting", "distasteful", "disagreeable", "horrible"],
-
-    "fear": ["scared", "frightened", "afraid", "terrified", "panicked", "anxious", "worried", "nervous", "uneasy", "spooked",
-             "alarmed", "dismayed", "horrified", "petrified", "intimidated", "threatened", "paranoid", "apprehensive", 
-             "tense", "jittery", "timid", "hesitant", "shaken", "fearful", "daunted", "pensive", "anxious", "worried"],
-
-    "surprised": ["surprised", "shocked", "astonished", "amazed", "stunned", "dumbfounded", "flabbergasted", "bewildered",
-                  "taken aback", "startled", "disbelief", "unbelievable", "unexpected", "unforeseen", "jaw-dropping",
-                  "mind-blowing", "eye-opening", "incredible", "astounding", "awe-inspiring", "unanticipated", "startling",
-                  "unpredictable", "striking", "impressive", "extraordinary", "remarkable"]
+    "happy": [
+        "delicious", "great", "wonderful", "recommend", "nice", "good",
+        "tasty", "flavorful", "excellent", "satisfying", "mouthwatering",
+        "superb", "amazing", "divine", "scrumptious", "tantalizing",
+        "delectable", "delightful", "savory", "yummy", "succulent",
+        "outstanding", "fabulous", "fantastic", "terrific", "phenomenal",
+        "perfect", "top-notch", "first-rate", "exceptional", "brilliant",
+        "stellar", "impeccable", "wonderful", "exceptional", "five-star",
+        "glorious", "splendid", "superior", "memorable", "joyful", "ecstatic",
+        "elated", "cheerful", "thrilled", "content", "radiant", "exuberant",
+        "jubilant", "blissful", "euphoric", "overjoyed"
+    ],
+    "sad": [
+        "bland", "slow", "disappointing", "unclean", "not seasoned", "soggy",
+        "bitter", "stale", "overpriced", "undercooked", "mediocre", "subpar",
+        "forgettable", "lackluster", "below-average", "underwhelming",
+        "boring", "dreary", "dismal", "lousy", "upsetting", "unpleasant",
+        "unsatisfactory", "dreadful", "poor", "miserable", "heartbreaking",
+        "depressing", "disheartening", "gloomy", "melancholy", "woeful",
+        "tragic", "dispiriting", "regrettable", "unfulfilling", "uninspiring"
+    ],
+    "mad": [
+        "rude", "unprofessional", "poor", "bad", "unsanitary", "chaotic",
+        "unorganized", "horrible", "awful", "terrible", "outrageous",
+        "infuriating", "frustrating", "enraging", "irritating", "exasperating",
+        "annoying", "disruptive", "offensive", "aggravating", "agitated",
+        "incensed", "livid", "furious", "irate", "angry", "hostile", "fuming",
+        "indignant", "irate", "vehement", "rabid", "pissed off", "vexed",
+        "maddening", "infuriated", "outraged", "incensed"
+    ],
+    "disgusted": [
+        "disgusting", "inedible", "unappetizing", "grimy", "gross",
+        "unsanitary", "unhygienic", "appalling", "shoddy", "cheaply-made",
+        "horrendous", "revolting", "repulsive", "nauseating", "vile", "foul",
+        "repugnant", "abhorrent", "disdainful", "offensive", "repellent",
+        "detestable", "noxious", "grotesque", "displeasing", "unpalatable",
+        "off-putting", "distasteful", "horrible", "off-putting", "distasteful",
+        "disagreeable", "horrible"
+    ],
+    "fear": [
+        "scared", "frightened", "afraid", "terrified", "panicked", "anxious",
+        "worried", "nervous", "uneasy", "spooked", "alarmed", "dismayed",
+        "horrified", "petrified", "intimidated", "threatened", "paranoid",
+        "apprehensive", "tense", "jittery", "timid", "hesitant", "shaken",
+        "fearful", "daunted", "pensive", "anxious", "worried"
+    ],
+    "surprised": [
+        "surprised", "shocked", "astonished", "amazed", "stunned",
+        "dumbfounded", "flabbergasted", "bewildered", "taken aback",
+        "startled", "disbelief", "unbelievable", "unexpected", "unforeseen",
+        "jaw-dropping", "mind-blowing", "eye-opening", "incredible",
+        "astounding", "awe-inspiring", "unanticipated", "startling",
+        "unpredictable", "striking", "impressive", "extraordinary",
+        "remarkable"
+    ]
 }
 
-swear_words = ["fuck", "shit", "bitch", "asshole", "damn", "crap", "bastard", "bloody", "bollocks", "wanker", "piss"]
+swear_words = [
+    "fuck", "shit", "bitch", "asshole", "damn", "crap", "bastard", "bloody",
+    "bollocks", "wanker", "piss"
+]
+
 
 def get_sentiment(text):
     # Analyze text for sentiment words based on emotion categories
@@ -48,6 +77,7 @@ def get_sentiment(text):
             if word.lower() in words:
                 emotion_scores[emotion] += 1
     return max(emotion_scores, key=emotion_scores.get)
+
 
 def get_response(emotion):
     responses = {
@@ -60,17 +90,23 @@ def get_response(emotion):
     }
     return responses[emotion]
 
+
 def handle_greeting(message):
     greetings = ["hi", "hello", "hey", "greeting"]
-    if any(greet in message.lower() for greet in greetings):
+    check1 = message.find("hi")
+    check2 = message.find("hello")
+    check3 = message.find("hey")
+    check4 = message.find("greeting")
+    if check1 > 0 or check2 > 1 or check3 > 0 or check4 > 3:
+        return None
+    elif any(greet in message.lower() for greet in greetings):
         responses = [
-            "Hi! How can I help you?",
-            "Hello! What brings you here today?",
-            "Hey! How can I assist you?",
-            "Greetings! What can I do for you?"
+            "Hi! How can I help you?", "Hello! What brings you here today?",
+            "Hey! How can I assist you?", "Greetings! What can I do for you?"
         ]
         return random.choice(responses)
     return None
+
 
 def handle_swear_words(message):
     for word in swear_words:
@@ -78,9 +114,11 @@ def handle_swear_words(message):
             return "I'm sorry, I can't assist with that."
     return None
 
+
 @app.route('/')
 def index():
     return render_template("index.html")
+
 
 @app.route('/chat', methods=['POST'])
 def chat():
@@ -103,5 +141,7 @@ def chat():
 
     return jsonify({"response": response})
 
+
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000)
+
