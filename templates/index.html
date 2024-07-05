@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Super Bot 360</title>
   <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
     body {
       font-family: 'Poppins', sans-serif;
       background: linear-gradient(135deg, #74ebd5, #ACB6E5); /* Gradient background */
@@ -26,6 +27,7 @@
       background-color: rgba(255, 255, 255, 0.9); /* Semi-transparent background */
       border-radius: 10px;
       box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      position: relative;
     }
     h1 {
       text-align: center;
@@ -134,14 +136,39 @@
     .emotion.neutral {
       color: #6c757d;
     }
+    .top-right {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      display: flex;
+      align-items: center;
+    }
+    .top-right img {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid #007bff;
+      margin-right: 10px;
+    }
+    .top-right h3 {
+      margin: 0;
+      font-size: 24px;
+      color: grey;
+      font-weight: 600;
+    }
   </style>
 </head>
 <body>
+  <div class="top-right">
+    <img src="{{ url_for('static', filename='images/6134346.png') }}" alt="robot logo">
+    <h3>Super Bot 360</h3>
+  </div>
   <div class="container">
     <h1>Super Bot 360</h1>
     <div class="chatbot-header">
       <img src="{{ url_for('static', filename='images/6134346.png') }}" alt="robot logo">
-      <h2>VERY COOL BOT</h2>
+      <h3>emotion text analysis</h3>
     </div>
     <div class="chat-area" id="chatArea">
       <!-- Chat messages will be dynamically added here -->
