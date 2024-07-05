@@ -34,7 +34,7 @@ emotion_words = {
         "annoying", "disruptive", "offensive", "aggravating", "agitated",
         "incensed", "livid", "furious", "irate", "angry", "hostile", "fuming",
         "indignant", "irate", "vehement", "rabid", "pissed off", "vexed",
-        "maddening", "infuriated", "outraged", "incensed"
+        "maddening", "infuriated", "outraged", "incensed","hate"
     ],
     "disgusted": [
         "disgusting", "inedible", "unappetizing", "grimy", "gross",
